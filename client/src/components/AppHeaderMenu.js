@@ -1,16 +1,23 @@
+import { Link } from "react-router-dom";
 import MenuDropdown from "../commonComponents/MenuDropdown";
 import SettingsIcon from "@material-ui/icons/Settings";
 import MenuIcon from "@material-ui/icons/Menu";
+import InfoIcon from "@material-ui/icons/Info";
+import MenuDropdownItem from '../commonComponents/MenuDropdownItem';
 
 const AppHeaderMenu = () => {
   const menuListItems = [
-    <div>
-      <SettingsIcon />
-      Settings
-    </div>,
+    <MenuDropdownItem>
+      <SettingsIcon /> Settings
+    </MenuDropdownItem>,
+    <Link to="/about" style={{ textDecoration: "none" }}>
+      <MenuDropdownItem>
+        <InfoIcon /> About Us
+      </MenuDropdownItem>
+    </Link>,
   ];
 
-  const menuDispay = <MenuIcon style={{fill: "white"}}/>;
+  const menuDispay = <MenuIcon style={{ fill: "white" }} />;
 
   return (
     <MenuDropdown menuItems={menuListItems} displayComponent={menuDispay} />
