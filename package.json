@@ -18,7 +18,11 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^5.3.0",
+    "cookie-session": "^1.4.0",
     "express": "^4.17.1",
+    "mongoose": "^5.11.15",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
