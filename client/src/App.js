@@ -5,6 +5,7 @@ import { getUser, setLoading } from "./contexts/User/UserAction";
 import AppHeader from "./components/AppHeader";
 import Container from "@material-ui/core/Container";
 import AboutUs from "./components/AboutUs";
+import Dashboard from "./components/Dashboard";
 
 const App = () => {
   const [, userDispatch] = useUser();
@@ -22,7 +23,8 @@ const App = () => {
       <Container>
         <AppHeader />
         <Route path="/about" component={AboutUs} />
-      </Container>
+        <Route path="/dashboard" component={Dashboard} />
+       </Container>
     </Router>
   );
 };

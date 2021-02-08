@@ -3,8 +3,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import AppHeaderMenu from './AppHeaderMenu';
-import {useUser} from '../contexts/User/UserState';
+import AppHeaderMenu from "./AppHeaderMenu";
+import { useUser } from "../contexts/User/UserState";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +31,15 @@ const AppHeader = () => {
           <Typography variant="h6" className={classes.title}>
             Replete
           </Typography>
-          <Button color="inherit" href={!!user ?  "/api/logout" : "/auth/google"}>{!!user ? 'Logout' : 'Login'}</Button>
+          <Button color="inherit" href="/dashboard">
+            Dashboard
+          </Button>
+          <Button
+            color="inherit"
+            href={!!user ? "/api/logout" : "/auth/google"}
+          >
+            {!!user ? "Logout" : "Login"}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
