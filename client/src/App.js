@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useUser } from "./contexts/User/UserState";
 import { getUser, setLoading } from "./contexts/User/UserAction";
@@ -8,14 +8,14 @@ import AboutUs from "./components/AboutUs";
 
 const App = () => {
   const [, userDispatch] = useUser();
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     await getUser(userDispatch);
     setLoading(userDispatch, false);
-  };
+  }, [userDispatch]);
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [fetchUser]);
 
   return (
     <Router>
