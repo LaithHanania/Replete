@@ -1,13 +1,17 @@
 const express = require('express');
 const passport = require("passport");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
 const keys = require("./config/keys");
 require("./models/User");
+require("./models/Criteria");
 require("./services/passport");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true});
+
 const app = express();
+app.use(bodyParser.json());
 
 app.use(
   cookieSession({
@@ -19,6 +23,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 require("./routes/authRoutes")(app);
+require("./routes/criteriaRoutes")(app);
 
 //For production routing (heroku):
 if (process.env.NODE_ENV === "production") {
