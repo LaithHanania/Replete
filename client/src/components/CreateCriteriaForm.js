@@ -1,30 +1,36 @@
 import { Form, Field } from "react-final-form";
 import { TextField } from "final-form-material-ui";
 import { Button, Grid } from "@material-ui/core";
-import axios from "axios";
+import { postCriteria } from "../repository/index";
+import Proptypes from "prop-types";
 
-const onFormSubmit = async (values) => {
-  const resp = axios.post("/api/criteria", values);
-  console.log(resp);
-};
+const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {
+  const onFormSubmit = async (values) => {
+    const resp = await postCriteria(values);
+    onSubmit();
+  };
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.label) {
-    errors.label = "Required";
-  }
-  if (!values.weight) {
-    errors.weight = "required";
-  } else if (isNaN(values.weight)) {
-    errors.weight = "Value must be a number";
-  } else if (values.weight < 0) {
-    errors.weight = "Value must be a positive number";
-  }
+  const validate = (values) => {
+    const errors = {};
+    if (!values.label) {
+      errors.label = "Required";
+    }
 
-  return errors;
-};
+    if (!values.weight) {
+      errors.weight = "required";
+    } else if (isNaN(values.weight)) {
+      errors.weight = "Value must be a number";
+    } else if (values.weight < 0) {
+      errors.weight = "Value must be a positive number";
+    }
 
-const CreateCriteriaForm = ({ onCancel }) => {
+    if (criteria.some((criterion) => criterion.label === values.label)) {
+      errors.label = "Name must be unique";
+    }
+
+    return errors;
+  };
+
   return (
     <div>
       <Form
@@ -90,6 +96,12 @@ const CreateCriteriaForm = ({ onCancel }) => {
       />
     </div>
   );
+};
+
+CreateCriteriaForm.propTypes = {
+  criteria: Proptypes.array,
+  onCancel: Proptypes.func.isRequired,
+  onSubmit: Proptypes.func.isRequired,
 };
 
 export default CreateCriteriaForm;
