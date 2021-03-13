@@ -6,6 +6,7 @@ import AppHeader from "./components/AppHeader";
 import Container from "@material-ui/core/Container";
 import AboutUs from "./components/AboutUs";
 import Dashboard from "./components/Dashboard";
+import Event from './components/Event';
 
 const App = () => {
   const [, userDispatch] = useUser();
@@ -24,6 +25,7 @@ const App = () => {
         <AppHeader />
         <Route path="/about" component={AboutUs} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/event/:id" exact children={<Event />}/>
        </Container>
     </Router>
   );

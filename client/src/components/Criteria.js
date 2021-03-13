@@ -1,8 +1,8 @@
 import { useEffect, useCallback, useState } from "react";
 import { getCriteria } from "../repository/index";
-import Typography from "@material-ui/core/Typography";
+import Title from '../commonComponents/Title';
 import CreateCriteriaModal from "./CreateCriteriaModal";
-import Button from "@material-ui/core/Button";
+import PrimaryButton from "../commonComponents/PrimaryButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import SingleCriteriaCard from "./SingleCriteriaCard";
@@ -22,8 +22,8 @@ const Criteria = () => {
 
   const fetchCriteria = useCallback(async () => {
     const data = await getCriteria();
-    setIsFetchingCriteria(false);
     setCriteria(data);
+    setIsFetchingCriteria(false);
   }, []);
 
   const handleSubmit = () => {
@@ -38,7 +38,7 @@ const Criteria = () => {
 
   return (
     <Paper style={{ padding: 16 }}>
-      <Typography variant="h4">Your Criteria: </Typography>
+      <Title text = 'Your Criteria' />
       {isFetchingCriteria && !criteria ? (
         <CircularProgress />
       ) : (
@@ -53,7 +53,7 @@ const Criteria = () => {
               />
             );
           })}
-          <Button onClick={handleOpen}>Create</Button>
+          <PrimaryButton onClick={handleOpen} text="Create" />
           <CreateCriteriaModal
             criteria={criteria}
             open={open}

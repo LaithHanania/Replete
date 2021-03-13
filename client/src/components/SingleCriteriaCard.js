@@ -1,7 +1,7 @@
 import { Box, Grid } from "@material-ui/core";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Proptypes from "prop-types";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -18,16 +18,10 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
 }))(LinearProgress);
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
-
 const SingleCriteriaCard = ({ label, weight, description }) => {
   return (
     <Grid container alignItems="flex-start" spacing={2}>
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         {label}:
       </Grid>
       <Grid item xs={3}>
