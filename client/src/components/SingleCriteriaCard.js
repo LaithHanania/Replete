@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Grid } from "@material-ui/core";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Proptypes from "prop-types";

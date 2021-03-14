@@ -1,3 +1,4 @@
+import React from "react";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
@@ -8,11 +9,12 @@ import PrimaryButton from "../commonComponents/PrimaryButton";
 import { Grid, Button, Box } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { postEvent } from "../repository/index";
+import Proptypes from "prop-types";
 
 const CreateEventForm = ({ onCancel, onSubmit, criteria }) => {
   const onFormSubmit = async (values) => {
     console.log("values", values);
-    const resp = await postEvent(values);
+    await postEvent(values);
     onSubmit();
   };
 
@@ -31,6 +33,11 @@ const CreateEventForm = ({ onCancel, onSubmit, criteria }) => {
 
   const valueValidation = (value) => isNaN(value) ?? "Value must be a number";
 
+  const initialCriterias = criteria.map((criterion) => ({
+    ...criterion,
+    value: 0,
+  }));
+
   return (
     <div style={{ overflow: "visible" }}>
       <Form
@@ -40,7 +47,7 @@ const CreateEventForm = ({ onCancel, onSubmit, criteria }) => {
           ...arrayMutators,
         }}
         initialValues={{
-          eventCriterias: criteria,
+          eventCriterias: initialCriterias,
         }}
         validate={validate}
         render={({
@@ -51,7 +58,6 @@ const CreateEventForm = ({ onCancel, onSubmit, criteria }) => {
           pristine,
           form,
           submitting,
-          values,
         }) => {
           return (
             <form onSubmit={handleSubmit} noValidate>
@@ -160,6 +166,17 @@ const CreateEventForm = ({ onCancel, onSubmit, criteria }) => {
       />
     </div>
   );
+};
+
+CreateEventForm.propTypes = {
+  onCancel: Proptypes.func.isRequired,
+  onSubmit: Proptypes.func.isRequired,
+  criteria: Proptypes.arrayOf(
+    Proptypes.shape({
+      label: Proptypes.string.isRequired,
+      weight: Proptypes.number,
+    })
+  ).isRequired,
 };
 
 export default CreateEventForm;

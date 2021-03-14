@@ -1,3 +1,4 @@
+import React from 'react';
 import Modal from "../commonComponents/Modal";
 import CreateCriteriaForm from "./CreateCriteriaForm";
 import Proptypes from "prop-types";
@@ -20,7 +21,7 @@ const CreateCriteriaModal = ({ criteria, open, onClose, onSubmit }) => {
 };
 
 CreateCriteriaModal.propTypes = {
-  crieria: Proptypes.array,
+  criteria: Proptypes.array,
   open: Proptypes.bool.isRequired,
   onClose: Proptypes.func.isRequired,
   onSubmit: Proptypes.func.isRequired,

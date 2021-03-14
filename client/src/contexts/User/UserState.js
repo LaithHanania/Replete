@@ -1,6 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import { UserContext } from "./UserContext";
 import UserReducer from "./UserReducer";
+import Proptypes from 'prop-types';
 
 export const useUser = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -27,4 +28,8 @@ export const UserState = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
+};
+
+UserState.propTypes = {
+  children: Proptypes.element,
 };

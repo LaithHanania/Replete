@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { getEvents, getCriteria } from "../repository/index";
 import Title from "../commonComponents/Title";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -52,7 +52,7 @@ const Events = () => {
         <CircularProgress />
       ) : (
         <div>
-          {events.map(({ date, label, description, eventCriterias, _id }) => (
+          {events.map(({ date, label, description, _id }) => (
             <SingleEventCard
               date={date}
               label={label}

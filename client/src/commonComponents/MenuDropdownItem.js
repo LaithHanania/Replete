@@ -1,3 +1,4 @@
+import React from 'react';
 import Box from "@material-ui/core/Box";
 import { withStyles } from "@material-ui/core/styles";
 import Proptypes from "prop-types";

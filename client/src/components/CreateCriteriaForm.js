@@ -1,3 +1,4 @@
+import React from 'react';
 import { Form, Field } from "react-final-form";
 import { TextField } from "final-form-material-ui";
 import { Button, Grid } from "@material-ui/core";
@@ -6,7 +7,7 @@ import Proptypes from "prop-types";
 
 const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {
   const onFormSubmit = async (values) => {
-    const resp = await postCriteria(values);
+    await postCriteria(values);
     onSubmit();
   };
 
@@ -36,7 +37,7 @@ const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {
       <Form
         onSubmit={onFormSubmit}
         validate={validate}
-        render={({ handleSubmit, submitting, pristine, values, form }) => (
+        render={({ handleSubmit, submitting, pristine, form }) => (
           <form onSubmit={handleSubmit}>
             <Grid container alignItems="flex-start" spacing={2}>
               <Grid item xs={6}>

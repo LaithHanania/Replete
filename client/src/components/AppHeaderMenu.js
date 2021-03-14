@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import MenuDropdown from "../commonComponents/MenuDropdown";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -7,10 +8,10 @@ import MenuDropdownItem from '../commonComponents/MenuDropdownItem';
 
 const AppHeaderMenu = () => {
   const menuListItems = [
-    <MenuDropdownItem>
+    <MenuDropdownItem key="dropdown">
       <SettingsIcon /> Settings
     </MenuDropdownItem>,
-    <Link to="/about" style={{ textDecoration: "none" }}>
+    <Link to="/about" style={{ textDecoration: "none" }} key="link">
       <MenuDropdownItem>
         <InfoIcon /> About Us
       </MenuDropdownItem>

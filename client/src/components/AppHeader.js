@@ -1,3 +1,4 @@
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -34,11 +35,8 @@ const AppHeader = () => {
           <Button color="inherit" href="/dashboard">
             Dashboard
           </Button>
-          <Button
-            color="inherit"
-            href={!!user ? "/api/logout" : "/auth/google"}
-          >
-            {!!user ? "Logout" : "Login"}
+          <Button color="inherit" href={!user ? "/auth/google" : "/api/logout"}>
+            {!user ? "Login" : "Logout"}
           </Button>
         </Toolbar>
       </AppBar>

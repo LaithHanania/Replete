@@ -1,3 +1,4 @@
+import React from 'react';
 import Criteria from "./Criteria";
 import Events from "./Events";
 

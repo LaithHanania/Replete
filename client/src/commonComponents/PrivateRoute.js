@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useUser } from "../contexts/User/UserState";
+import Proptypes from 'prop-types';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const [userState] = useUser();
@@ -15,6 +16,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       }
     ></Route>
   );
+};
+
+PrivateRoute.propTypes = {
+    component: Proptypes.elementType
 };
 
 export default PrivateRoute;

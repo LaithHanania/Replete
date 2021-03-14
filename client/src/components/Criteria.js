@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { getCriteria } from "../repository/index";
 import Title from '../commonComponents/Title';
 import CreateCriteriaModal from "./CreateCriteriaModal";
