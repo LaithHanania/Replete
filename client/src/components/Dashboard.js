@@ -1,19 +1,11 @@
-import { useUser } from "../contexts/User/UserState";
-import LoggedOutWarning from "./../commonComponents/LoggedOutWarning";
-import Criteria from './Criteria';
-import Events from './Events';
+import Criteria from "./Criteria";
+import Events from "./Events";
 
 const Dashboard = () => {
-  const [userState] = useUser();
-  const { user } = userState;
-
-  return !!user ? (
+  return (
     <div>
-      <Criteria />
-      <Events />
+      <Criteria /> <Events />
     </div>
-  ) : (
-    <LoggedOutWarning />
   );
 };
 

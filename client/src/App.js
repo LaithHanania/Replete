@@ -7,6 +7,8 @@ import Container from "@material-ui/core/Container";
 import AboutUs from "./components/AboutUs";
 import Dashboard from "./components/Dashboard";
 import Event from './components/Event';
+import PrivateRoute from './commonComponents/PrivateRoute';
+import LoggedOutWarning from './commonComponents/LoggedOutWarning';
 
 const App = () => {
   const [, userDispatch] = useUser();
@@ -24,8 +26,9 @@ const App = () => {
       <Container>
         <AppHeader />
         <Route path="/about" component={AboutUs} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/event/:id" exact children={<Event />}/>
+        <Route path="/signin" component={LoggedOutWarning}/>
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/event/:id" exact children={<Event />}/>
        </Container>
     </Router>
   );
