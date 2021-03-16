@@ -8,6 +8,7 @@ const eventSchema = new Schema({
   description: String,
   eventCriterias: [EventCriteria],
   _user: { type: Schema.Types.ObjectId, ref: "User" },
+  netValue: Number
 });
 
 mongoose.model("event", eventSchema);

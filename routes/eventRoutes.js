@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const _ = require("lodash");
+const EventService = require("../services/EventService");
 
 const Event = mongoose.model("event");
 
@@ -18,12 +19,19 @@ module.exports = (app) => {
   app.post("/api/event", requireLogin, async (req, res) => {
     const { date, label, description, eventCriterias } = req.body;
 
+    const eventService = new EventService(eventCriterias);
+    eventService.cleanEventCriteriaValues();
+    const netValue = eventService.calculateNetValue();
+
+    const cleanedEventCriterias = eventService.eventCriterias;
+
     const event = new Event({
       date,
       label,
       description,
-      eventCriterias,
+      eventCriterias: cleanedEventCriterias,
       _user: req.user.id,
+      netValue,
     });
 
     try {

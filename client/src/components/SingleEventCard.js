@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import moment from 'moment';
 
 const SingleEventCard = ({ label, date, description, _id }) => {
   return (
@@ -9,11 +10,8 @@ const SingleEventCard = ({ label, date, description, _id }) => {
       <Grid item xs={2}>
         <Link to={`/event/${_id}`}>{label}</Link>
       </Grid>
-      <Grid item xs={3}>
-        {date}
-      </Grid>
       <Grid item xs={2}>
-        {date}
+        {moment(date).format("MMM Do YYYY")}
       </Grid>
       {description ? <Box>{description}</Box> : null}
     </Grid>

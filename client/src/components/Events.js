@@ -6,6 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import SingleEventCard from "./SingleEventCard";
 import PrimaryButton from "../commonComponents/PrimaryButton";
 import CreateEventModal from "./CreateEventModal";
+import EventsChart from './EventsChart';
 
 const Events = () => {
   const [isFetchingEvents, setIsFetchingEvents] = useState(true);
@@ -52,6 +53,7 @@ const Events = () => {
         <CircularProgress />
       ) : (
         <div>
+          <EventsChart events={events}/>
           {events.map(({ date, label, description, _id }) => (
             <SingleEventCard
               date={date}

@@ -14,7 +14,6 @@ const Event = () => {
     setIsLoading(true);
     const data = await getEvent(params.id);
     setEvent(data);
-    console.log(data);
     setIsLoading(false);
   }, [params.id]);
 
