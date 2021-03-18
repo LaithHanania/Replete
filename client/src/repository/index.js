@@ -10,8 +10,8 @@ export const postCriteria = async (values) => {
   return resp;
 };
 
-export const getEvents = async () => {
-  const resp = await axios.get("/api/events");
+export const getEvents = async ({ page, limit }) => {
+  const resp = await axios.get(`/api/events?page=${page}&limit=${limit}`);
   return resp.data;
 };
 

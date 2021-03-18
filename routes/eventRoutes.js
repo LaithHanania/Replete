@@ -6,9 +6,20 @@ const EventService = require("../services/EventService");
 const Event = mongoose.model("event");
 
 module.exports = (app) => {
-  app.get("/api/events", requireLogin, async (req, res) => {
-    const events = await Event.find({ _user: req.user.id });
-    res.send(events);
+  app.get("/api/events/", requireLogin, async (req, res) => {
+    const { page = 1, limit = 2 } = req.query;
+    const sanitizedPage = parseFloat(page);
+    const sanitiziedLimit = parseFloat(limit);
+    console.log(req.query);
+
+    const eventCount = await Event.find({ _user: req.user.id }).count();
+    const events = await Event.find({ _user: req.user.id })
+      .sort({ date: -1 })
+      .limit(sanitiziedLimit)
+      .skip((sanitizedPage - 1) * sanitiziedLimit)
+      .exec();
+
+    res.send({ events, eventCount });
   });
 
   app.get("/api/event/:id", requireLogin, async (req, res) => {
