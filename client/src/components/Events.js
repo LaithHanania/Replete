@@ -7,7 +7,7 @@ import SingleEventCard from "./SingleEventCard";
 import PrimaryButton from "../commonComponents/PrimaryButton";
 import CreateEventModal from "./CreateEventModal";
 import EventsChart from "./EventsChart";
-import ReactPaginate from "react-paginate";
+import Pagination from "@material-ui/lab/Pagination";
 
 const Events = () => {
   const [isFetchingEvents, setIsFetchingEvents] = useState(true);
@@ -50,10 +50,8 @@ const Events = () => {
     fetchCriteria();
   }, [fetchEvents, fetchCriteria, pageSelected]);
 
-  const handlePageClick = (e) => {
-    const selectedPage = e.selected;
-    setPageSelected(selectedPage + 1);
-    console.log(pageSelected);
+  const handlePageClick = (event, value) => {
+    setPageSelected(value);
   };
 
   return (
@@ -80,18 +78,11 @@ const Events = () => {
             onSubmit={handleSubmit}
             criteria={criteria}
           />
-          <ReactPaginate
-            previousLabel={"prev"}
-            nextLabel={"next"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"}
+          <Pagination
+            count={pageCount}
+            showFirstButton
+            showLastButton
+            onChange={handlePageClick}
           />
         </div>
       )}

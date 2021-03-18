@@ -10,7 +10,6 @@ module.exports = (app) => {
     const { page = 1, limit = 2 } = req.query;
     const sanitizedPage = parseFloat(page);
     const sanitiziedLimit = parseFloat(limit);
-    console.log(req.query);
 
     const eventCount = await Event.find({ _user: req.user.id }).count();
     const events = await Event.find({ _user: req.user.id })
