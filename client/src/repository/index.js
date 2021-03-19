@@ -1,5 +1,7 @@
 import axios from "axios";
 
+//TODO: Break up into multiple files
+
 export const getCriteria = async () => {
   const resp = await axios.get("/api/criteria");
   return resp.data;

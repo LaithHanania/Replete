@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from "../commonComponents/Modal";
+import Modal from "commonComponents/Modal";
 import CreateCriteriaForm from "./CreateCriteriaForm";
 import Proptypes from "prop-types";
 

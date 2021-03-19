@@ -22,7 +22,7 @@ module.exports = (app) => {
   });
 
   app.get("/api/event/:id", requireLogin, async (req, res) => {
-    const event = await Event.find({ _user: req.user.id, _id: req.params.id });
+    const event = await Event.findOne({ _user: req.user.id, _id: req.params.id });
     res.send(event);
   });
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import MenuDropdown from "../commonComponents/MenuDropdown";
+import MenuDropdown from "commonComponents/MenuDropdown";
+import MenuDropdownItem from 'commonComponents/MenuDropdownItem';
 import SettingsIcon from "@material-ui/icons/Settings";
 import MenuIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/Info";
-import MenuDropdownItem from '../commonComponents/MenuDropdownItem';
 
 const AppHeaderMenu = () => {
   const menuListItems = [

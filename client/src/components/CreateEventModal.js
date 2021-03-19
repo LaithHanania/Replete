@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from "../commonComponents/Modal";
+import Modal from "commonComponents/Modal";
 import CreateEventForm from "./CreateEventForm";
 import Proptypes from "prop-types";
 

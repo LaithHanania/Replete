@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field } from "react-final-form";
 import { TextField } from "final-form-material-ui";
 import { Button, Grid } from "@material-ui/core";
-import { postCriteria } from "../repository/index";
+import { postCriteria } from "repository/index";
 import Proptypes from "prop-types";
 
 const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {

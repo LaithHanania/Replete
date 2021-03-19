@@ -6,7 +6,7 @@ import moment from 'moment';
 
 const SingleEventCard = ({ label, date, description, _id }) => {
   return (
-    <Grid container alignItems="flex-start" spacing={2}>
+  <Grid container alignItems="flex-start" spacing={2}>
       <Grid item xs={2}>
         <Link to={`/event/${_id}`}>{label}</Link>
       </Grid>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { getEvent } from "../repository/index";
+import { getEvent } from "repository/index";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Box, Typography } from "@material-ui/core";
-import Title from "../commonComponents/Title";
+import Title from "commonComponents/Title";
 
 const Event = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,14 +27,14 @@ const Event = () => {
         <CircularProgress />
       ) : (
         <>
-          <Title text={event[0].label} />
+          <Title text={event.label} />
           <Typography variant="h5" color="textSecondary">
-            {event[0].date}
+            {event.date}
           </Typography>
-          {!!event[0].description && <Box>{event[0].description}</Box>}
-          {event[0].eventCriterias && (
+          {!!event.description && <Box>{event.description}</Box>}
+          {event.eventCriterias && (
             <div>
-              {event[0].eventCriterias.map(( criterias ) => (
+              {event.eventCriterias.map((criterias) => (
                 <div key={criterias.label}>
                   {criterias.label} : {criterias.weight} :{" "}
                   {criterias.description}

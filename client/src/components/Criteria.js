@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { getCriteria } from "../repository/index";
-import Title from '../commonComponents/Title';
+import { getCriteria } from "repository/index";
+import Title from 'commonComponents/Title';
+import PrimaryButton from "commonComponents/PrimaryButton";
 import CreateCriteriaModal from "./CreateCriteriaModal";
-import PrimaryButton from "../commonComponents/PrimaryButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import SingleCriteriaCard from "./SingleCriteriaCard";

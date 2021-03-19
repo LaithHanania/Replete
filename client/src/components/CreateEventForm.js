@@ -5,12 +5,12 @@ import { FieldArray } from "react-final-form-arrays";
 import { TextField } from "final-form-material-ui";
 import { DatePicker } from "mui-rff";
 import DateFnsUtils from "@date-io/date-fns";
-import PrimaryButton from "../commonComponents/PrimaryButton";
+import PrimaryButton from "commonComponents/PrimaryButton";
 import { Grid, Button, Box } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { postEvent } from "../repository/index";
+import { postEvent } from "repository/index";
 import Proptypes from "prop-types";
-import { getCriteria } from "../repository/index";
+import { getCriteria } from "repository/index";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const CreateEventForm = ({ onCancel, onSubmit }) => {
