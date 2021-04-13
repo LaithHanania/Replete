@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <Router>
-      <Container>
+      <Container maxWidth="xl">
         <AppHeader />
         <Route path="/about" component={AboutUs} />
         <Route path="/signin" component={LoggedOutWarning} />

@@ -40,6 +40,8 @@ const EventsChart = ({ events }) => {
     return moment(tickItem).format("MMM Do");
   };*/
 
+  //TODO: Allow a user to create lines, track separate criterias and not just the net result
+
   return (
     <ResponsiveContainer width="90%" height={200}>
       <ComposedChart
