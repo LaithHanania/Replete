@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import { Button, withStyles } from "@material-ui/core";
 import Proptypes from "prop-types";
+import { primary } from "helpers/constants";
 
 const StyledButton = withStyles({
   root: {
-    background: "#008CBA",
+    background: primary,
     color: "white",
     textTransform: "none",
     "&:hover": {

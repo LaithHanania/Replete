@@ -21,8 +21,8 @@ const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {
       errors.weight = "required";
     } else if (isNaN(values.weight)) {
       errors.weight = "Value must be a number";
-    } else if (values.weight < 0) {
-      errors.weight = "Value must be a positive number";
+    } else if (values.weight < 0 || values.weight > 10) {
+      errors.weight = "Value must be a number between 0 and 10";
     }
 
     if (criteria.some((criterion) => criterion.label === values.label)) {

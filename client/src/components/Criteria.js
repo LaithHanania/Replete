@@ -1,11 +1,11 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { getCriteria } from "repository/index";
-import Title from 'commonComponents/Title';
+import Title from "commonComponents/Title";
 import PrimaryButton from "commonComponents/PrimaryButton";
 import CreateCriteriaModal from "./CreateCriteriaModal";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Paper from "@material-ui/core/Paper";
 import SingleCriteriaCard from "./SingleCriteriaCard";
+import Box from "@material-ui/core/Box";
 
 const Criteria = () => {
   const [isFetchingCriteria, setIsFetchingCriteria] = useState(true);
@@ -37,22 +37,24 @@ const Criteria = () => {
   }, [fetchCriteria]);
 
   return (
-    <Paper style={{ padding: 16 }}>
-      <Title text = 'Your Criteria' />
+    <Box style={{ padding: 16 }}>
+      <Title text="Your Criteria" />
       {isFetchingCriteria && !criteria ? (
         <CircularProgress />
       ) : (
         <div>
-          {criteria.map(({ label, weight, description }) => {
-            return (
-              <SingleCriteriaCard
-                key={label}
-                label={label}
-                weight={weight}
-                description={description}
-              />
-            );
-          })}
+          <Box paddingBottom={1}>
+            {criteria.map(({ label, weight, description }) => {
+              return (
+                <SingleCriteriaCard
+                  key={label}
+                  label={label}
+                  weight={weight}
+                  description={description}
+                />
+              );
+            })}
+          </Box>
           <PrimaryButton onClick={handleOpen} text="Create" />
           <CreateCriteriaModal
             criteria={criteria}
@@ -62,7 +64,7 @@ const Criteria = () => {
           />
         </div>
       )}
-    </Paper>
+    </Box>
   );
 };
 

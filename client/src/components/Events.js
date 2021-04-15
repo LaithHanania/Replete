@@ -3,7 +3,6 @@ import { getEvents, getCriteria } from "repository/index";
 import Title from "commonComponents/Title";
 import PrimaryButton from "commonComponents/PrimaryButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Paper from "@material-ui/core/Paper";
 import SingleEventCard from "./SingleEventCard";
 import CreateEventModal from "./CreateEventModal";
 import EventsChart from "./EventsChart";
@@ -61,22 +60,24 @@ const Events = () => {
   };
 
   return (
-    <Paper style={{ padding: 16 }}>
+    <Box style={{ padding: 16 }} square>
       <Title text="Your Events" />
       {isFetchingEvents | isFetchingCriteria ? (
         <CircularProgress />
       ) : (
         <div>
           <EventsChart events={events} />
-          {events.map(({ date, label, description, _id }) => (
-            <SingleEventCard
-              date={date}
-              label={label}
-              description={description}
-              _id={_id}
-              key={_id}
-            />
-          ))}
+          <Box paddingBottom={1}>
+            {events.map(({ date, label, description, _id }) => (
+              <SingleEventCard
+                date={date}
+                label={label}
+                description={description}
+                _id={_id}
+                key={_id}
+              />
+            ))}
+          </Box>
           <PrimaryButton text="Create Event" onClick={handleOpen} />
           <CreateEventModal
             open={open}
@@ -84,7 +85,7 @@ const Events = () => {
             onSubmit={handleSubmit}
             criteria={criteria}
           />
-          <Box  display="flex" justifyContent="center">
+          <Box display="flex" justifyContent="center">
             <Pagination
               count={pageCount}
               showFirstButton
@@ -94,7 +95,7 @@ const Events = () => {
           </Box>
         </div>
       )}
-    </Paper>
+    </Box>
   );
 };
 

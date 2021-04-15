@@ -15,18 +15,18 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: "#1a90ff",
+    backgroundColor: "#3C3939",
   },
 }))(LinearProgress);
 
 const SingleCriteriaCard = ({ label, weight, description }) => {
   return (
     <Grid container alignItems="flex-start" spacing={2}>
-      <Grid item xs={2}>
+      <Grid item xs={1}>
         {label}:
       </Grid>
       <Grid item xs={3}>
-        <BorderLinearProgress variant="determinate" value={weight} />
+        <BorderLinearProgress variant="determinate" value={weight * 10} />
       </Grid>
       <Grid item xs={1}>
         {weight}

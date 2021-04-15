@@ -60,7 +60,7 @@ const EventsChart = ({ events }) => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="net" barSize={20} fill="#413ea0" />
+        <Bar dataKey="net" barSize={20} fill="#3C3939" />
         <Line type="monotone" dataKey="net" stroke="#ff7300" />
       </ComposedChart>
     </ResponsiveContainer>

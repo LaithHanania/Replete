@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const StyledToolbar = withStyles({
+  root: {
+    backgroundColor: "#3C3939",
+  },
+})(Toolbar);
+
 const AppHeader = () => {
   const [userState] = useUser();
   const { user } = userState;
@@ -27,7 +33,7 @@ const AppHeader = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <StyledToolbar>
           <AppHeaderMenu />
           <Typography variant="h6" className={classes.title}>
             Replete
@@ -38,7 +44,7 @@ const AppHeader = () => {
           <Button color="inherit" href={!user ? "/auth/google" : "/api/logout"}>
             {!user ? "Login" : "Logout"}
           </Button>
-        </Toolbar>
+        </StyledToolbar>
       </AppBar>
     </div>
   );
