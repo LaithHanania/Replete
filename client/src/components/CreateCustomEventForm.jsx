@@ -3,17 +3,15 @@ import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import { TextField } from "final-form-material-ui";
-import { DatePicker } from "mui-rff";
-import DateFnsUtils from "@date-io/date-fns";
 import PrimaryButton from "commonComponents/PrimaryButton";
 import { Grid, Button, Box } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { postEvent } from "repository/index";
+import { postCustomEvent } from "repository/index";
 import Proptypes from "prop-types";
 import { getCriteria } from "repository/index";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const CreateEventForm = ({ onCancel, onSubmit, initialValues }) => {
+const CreateCustomEventForm = ({ onCancel, onSubmit }) => {
   const [criteria, setCriteria] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +26,7 @@ const CreateEventForm = ({ onCancel, onSubmit, initialValues }) => {
   }, [fetchCriteria]);
 
   const onFormSubmit = async (values) => {
-    await postEvent(values);
+    await postCustomEvent(values);
     onSubmit();
   };
 
@@ -36,10 +34,6 @@ const CreateEventForm = ({ onCancel, onSubmit, initialValues }) => {
     const errors = {};
     if (!values.label) {
       errors.label = "Event must have name";
-    }
-
-    if (!values.date) {
-      errors.date = "Must enter event date";
     }
 
     return errors;
@@ -62,17 +56,9 @@ const CreateEventForm = ({ onCancel, onSubmit, initialValues }) => {
         mutators={{
           ...arrayMutators,
         }}
-        initialValues={
-          !initialValues
-            ? {
-                eventCriterias: initialCriterias,
-              }
-            : {
-                eventCriterias: initialValues.eventCriterias,
-                label: initialValues.label,
-                description: initialValues.description,
-              }
-        }
+        initialValues={{
+          eventCriterias: initialCriterias,
+        }}
         validate={validate}
         render={({
           handleSubmit,
@@ -85,23 +71,14 @@ const CreateEventForm = ({ onCancel, onSubmit, initialValues }) => {
         }) => {
           return (
             <form onSubmit={handleSubmit} noValidate>
-              <Grid container alignItems="flex-start" spacing={2}>
-                <Grid item xs={6}>
-                  <Field
-                    name="label"
-                    placeholder="Event Name"
-                    component={TextField}
-                    label="Event Name"
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <DatePicker
-                    name="date"
-                    label="Event Date"
-                    dateFunsUtils={DateFnsUtils}
-                    format="MM/dd/yyyy"
-                  />
-                </Grid>
+              <Grid container alignItems="flex-start">
+                <Field
+                  name="label"
+                  placeholder="Event Name"
+                  component={TextField}
+                  label="Event Name"
+                  fullWidth
+                />
               </Grid>
               <div>
                 <Field
@@ -192,19 +169,9 @@ const CreateEventForm = ({ onCancel, onSubmit, initialValues }) => {
   );
 };
 
-CreateEventForm.propTypes = {
+CreateCustomEventForm.propTypes = {
   onCancel: Proptypes.func.isRequired,
   onSubmit: Proptypes.func.isRequired,
-  initialValues: Proptypes.shape({
-    label: Proptypes.string,
-    description: Proptypes.string,
-    eventCriterias: Proptypes.arrayOf(
-      Proptypes.shape({
-        label: Proptypes.string,
-        value: Proptypes.number,
-      })
-    ),
-  }),
 };
 
-export default CreateEventForm;
+export default CreateCustomEventForm;

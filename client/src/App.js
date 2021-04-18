@@ -12,6 +12,7 @@ import LoggedOutWarning from "commonComponents/LoggedOutWarning";
 
 const App = () => {
   const [, userDispatch] = useUser();
+  
   const fetchUser = useCallback(async () => {
     await getUser(userDispatch);
     setLoading(userDispatch, false);
@@ -19,7 +20,7 @@ const App = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [fetchUser]);
+  }, []);
 
   return (
     <Router>

@@ -37,13 +37,19 @@ const Criteria = () => {
   }, [fetchCriteria]);
 
   return (
-    <Box style={{ padding: 16 }}>
+    <Box
+      paddingX="16px"
+      paddingTop="16px"
+      border={2}
+      borderRadius={16}
+      height="100%"
+    >
       <Title text="Your Criteria" />
       {isFetchingCriteria && !criteria ? (
         <CircularProgress />
       ) : (
         <div>
-          <Box paddingBottom={1}>
+          <Box paddingBottom="12px" height="270px" style={{ overflowY: "scroll", overflowX: 'hidden' }}>
             {criteria.map(({ label, weight, description }) => {
               return (
                 <SingleCriteriaCard

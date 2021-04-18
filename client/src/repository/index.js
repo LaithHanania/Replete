@@ -26,3 +26,14 @@ export const postEvent = async (values) => {
   const resp = await axios.post("/api/event", values);
   return resp;
 };
+
+export const getCustomEvents = async () => {
+  const resp = await axios.get("/api/customEvents");
+  return resp.data;
+};
+
+export const postCustomEvent = async (values) => {
+  const resp = await axios.post("/api/customEvent", values);
+
+  return resp;
+};

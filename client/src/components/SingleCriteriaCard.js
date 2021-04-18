@@ -21,14 +21,14 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 const SingleCriteriaCard = ({ label, weight, description }) => {
   return (
-    <Grid container alignItems="flex-start" spacing={2}>
-      <Grid item xs={1}>
+    <Grid container alignItems="center" spacing={2}>
+      <Grid item xs={3}>
         {label}:
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={6}>
         <BorderLinearProgress variant="determinate" value={weight * 10} />
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         {weight}
       </Grid>
       {description ? <Box>{description}</Box> : null}

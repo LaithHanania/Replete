@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { getEvents, getCriteria } from "repository/index";
+import { getEvents } from "repository/index";
 import Title from "commonComponents/Title";
 import PrimaryButton from "commonComponents/PrimaryButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -15,8 +15,7 @@ import Box from "@material-ui/core/Box";
 
 const Events = () => {
   const [isFetchingEvents, setIsFetchingEvents] = useState(true);
-  const [isFetchingCriteria, setIsFetchingCriteria] = useState(true);
-  const [criteria, setCriteria] = useState([]);
+  const [createFromCustomObject, setCreateFromCustomObject] = useState(null);
   const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
   const [pageSelected, setPageSelected] = useState(1);
@@ -28,6 +27,7 @@ const Events = () => {
   };
 
   const handleClose = () => {
+    setCreateFromCustomObject(null);
     setOpen(false);
   };
 
@@ -44,25 +44,26 @@ const Events = () => {
     setIsFetchingEvents(false);
   }, [pageSelected]);
 
-  const fetchCriteria = useCallback(async () => {
-    const data = await getCriteria();
-    setCriteria(data);
-    setIsFetchingCriteria(false);
-  }, []);
-
   useEffect(() => {
     fetchEvents();
-    fetchCriteria();
-  }, [fetchEvents, fetchCriteria, pageSelected]);
+  }, [fetchEvents]);
+
+  useEffect(() => {
+    window.addEventListener("createFromCustomEvent", ({ detail }) => {
+      setCreateFromCustomObject(detail);
+      setOpen(true);
+    });
+    return window.removeEventListener("createFromCustomEvent", () => {});
+  }, []);
 
   const handlePageClick = (event, value) => {
     setPageSelected(value);
   };
 
   return (
-    <Box style={{ padding: 16 }} square>
+    <Box padding="16px" marginTop="16px">
       <Title text="Your Events" />
-      {isFetchingEvents | isFetchingCriteria ? (
+      {isFetchingEvents ? (
         <CircularProgress />
       ) : (
         <div>
@@ -83,7 +84,7 @@ const Events = () => {
             open={open}
             onClose={handleClose}
             onSubmit={handleSubmit}
-            criteria={criteria}
+            initialValues={createFromCustomObject}
           />
           <Box display="flex" justifyContent="center">
             <Pagination
@@ -99,4 +100,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default React.memo(Events);

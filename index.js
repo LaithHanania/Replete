@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 require("./models/User");
 require("./models/Criteria");
 require("./models/Event");
+require("./models/CustomEvent");
 require("./services/passport");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true});
@@ -26,6 +27,7 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 require("./routes/criteriaRoutes")(app);
 require("./routes/eventRoutes")(app);
+require("./routes/customEventRoutes")(app);
 
 //For production routing (heroku):
 if (process.env.NODE_ENV === "production") {
