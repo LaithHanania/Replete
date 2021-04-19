@@ -66,20 +66,22 @@ const Events = () => {
       {isFetchingEvents ? (
         <CircularProgress />
       ) : (
-        <div>
+        <>
           <EventsChart events={events} />
-          <Box paddingBottom={1}>
-            {events.map(({ date, label, description, _id }) => (
-              <SingleEventCard
-                date={date}
-                label={label}
-                description={description}
-                _id={_id}
-                key={_id}
-              />
-            ))}
+          <Box display="flex" justifyContent="center" flexDirection="column" width="100%">
+            <Box paddingBottom={1} justifyContent="center">
+              {events.map(({ date, label, description, _id }) => (
+                <SingleEventCard
+                  date={date}
+                  label={label}
+                  description={description}
+                  _id={_id}
+                  key={_id}
+                />
+              ))}
+            </Box>
+            <PrimaryButton text="Create Event" onClick={handleOpen} />
           </Box>
-          <PrimaryButton text="Create Event" onClick={handleOpen} />
           <CreateEventModal
             open={open}
             onClose={handleClose}
@@ -94,7 +96,7 @@ const Events = () => {
               onChange={handlePageClick}
             />
           </Box>
-        </div>
+        </>
       )}
     </Box>
   );

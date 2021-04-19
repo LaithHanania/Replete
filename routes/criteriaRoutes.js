@@ -15,7 +15,7 @@ module.exports = (app) => {
 
     const currentCriteria = await Criteria.find({
       _user: req.user.id,
-      label: label
+      label: label,
     });
 
     if (!_.isEmpty(currentCriteria)) {
@@ -31,6 +31,22 @@ module.exports = (app) => {
 
     try {
       await criteria.save();
+      const user = await req.user.save();
+      res.send(user);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
+
+  app.delete("/api/criteria", requireLogin, async (req, res) => {
+    const { label } = req.body;
+
+    await Criteria.find({
+      _user: req.user.id,
+      label: label,
+    }).deleteOne();
+
+    try {
       const user = await req.user.save();
       res.send(user);
     } catch (err) {

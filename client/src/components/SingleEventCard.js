@@ -1,14 +1,16 @@
-import React from 'react';
+import React from "react";
 import { Box, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import moment from 'moment';
+import moment from "moment";
 
 const SingleEventCard = ({ label, date, description, _id }) => {
   return (
-  <Grid container alignItems="flex-start" spacing={2}>
+    <Grid container alignItems="flex-start" spacing={2} justify="center">
       <Grid item xs={2}>
-        <Link to={`/event/${_id}`}>{label}</Link>
+        <Link style={{ color: "black" }} to={`/event/${_id}`}>
+          {label}
+        </Link>
       </Grid>
       <Grid item xs={2}>
         {moment(date).format("MMM Do YYYY")}

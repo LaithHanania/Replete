@@ -43,7 +43,7 @@ const EventsChart = ({ events }) => {
   //TODO: Allow a user to create lines, track separate criterias and not just the net result
 
   return (
-    <ResponsiveContainer width="90%" height={200}>
+    <ResponsiveContainer width="100%" height={200}>
       <ComposedChart
         width={500}
         height={400}

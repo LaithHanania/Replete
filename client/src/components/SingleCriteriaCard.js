@@ -1,8 +1,10 @@
-import React from 'react';
-import { Box, Grid } from "@material-ui/core";
+import React from "react";
+import { Grid } from "@material-ui/core";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Proptypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -19,9 +21,9 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
 }))(LinearProgress);
 
-const SingleCriteriaCard = ({ label, weight, description }) => {
+const SingleCriteriaCard = ({ label, weight, onDelete }) => {
   return (
-    <Grid container alignItems="center" spacing={2}>
+    <Grid container alignItems="center" spacing={1}>
       <Grid item xs={3}>
         {label}:
       </Grid>
@@ -31,7 +33,15 @@ const SingleCriteriaCard = ({ label, weight, description }) => {
       <Grid item xs={2}>
         {weight}
       </Grid>
-      {description ? <Box>{description}</Box> : null}
+      <Grid item xs={1}>
+        <IconButton
+          onClick={() => {
+            onDelete(label);
+          }}
+        >
+          <DeleteIcon fontSize="small" />
+        </IconButton>
+      </Grid>
     </Grid>
   );
 };
@@ -40,6 +50,7 @@ SingleCriteriaCard.propTypes = {
   label: Proptypes.string.isRequired,
   weight: Proptypes.number.isRequired,
   description: Proptypes.string,
+  onDelete: Proptypes.func,
 };
 
 export default SingleCriteriaCard;

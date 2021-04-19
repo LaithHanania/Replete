@@ -12,6 +12,11 @@ export const postCriteria = async (values) => {
   return resp;
 };
 
+export const deleteCriteria = async (label) => {
+  const resp = await axios.delete("/api/criteria", { data: { label } });
+  return resp;
+};
+
 export const getEvents = async ({ page, limit }) => {
   const resp = await axios.get(`/api/events?page=${page}&limit=${limit}`);
   return resp.data;

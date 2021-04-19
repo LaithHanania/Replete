@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { getCriteria } from "repository/index";
+import { getCriteria, deleteCriteria } from "repository/index";
 import Title from "commonComponents/Title";
 import PrimaryButton from "commonComponents/PrimaryButton";
 import CreateCriteriaModal from "./CreateCriteriaModal";
@@ -32,6 +32,12 @@ const Criteria = () => {
     handleClose();
   };
 
+  const handleDelete = async (label) => {
+    setIsFetchingCriteria(true);
+    await deleteCriteria(label);
+    await fetchCriteria();
+  };
+
   useEffect(() => {
     fetchCriteria();
   }, [fetchCriteria]);
@@ -49,14 +55,18 @@ const Criteria = () => {
         <CircularProgress />
       ) : (
         <div>
-          <Box paddingBottom="12px" height="270px" style={{ overflowY: "scroll", overflowX: 'hidden' }}>
-            {criteria.map(({ label, weight, description }) => {
+          <Box
+            paddingBottom="12px"
+            height="270px"
+            style={{ overflowY: "scroll", overflowX: "hidden" }}
+          >
+            {criteria.map(({ label, weight }) => {
               return (
                 <SingleCriteriaCard
                   key={label}
                   label={label}
                   weight={weight}
-                  description={description}
+                  onDelete={handleDelete}
                 />
               );
             })}
