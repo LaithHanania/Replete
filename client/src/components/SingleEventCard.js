@@ -8,14 +8,27 @@ const SingleEventCard = ({ label, date, description, _id }) => {
   return (
     <Grid container alignItems="flex-start" spacing={2} justify="center">
       <Grid item xs={2}>
-        <Link style={{ color: "black" }} to={`/event/${_id}`}>
-          {label}
-        </Link>
+        <Box display="flex" justifyContent="center">
+          <Link style={{ color: "black" }} to={`/event/${_id}`}>
+            {label}
+          </Link>
+        </Box>
+      </Grid>
+      <Grid item xs={4}>
+        <Box
+          fontStyle="italic"
+          display="flex"
+          justifyContent="center"
+          color={description ? "black" : "gray"}
+        >
+          {description ?? "No description. Try adding one!"}
+        </Box>
       </Grid>
       <Grid item xs={2}>
-        {moment(date).format("MMM Do YYYY")}
+        <Box display="flex" justifyContent="center">
+          {moment(date).format("MMM Do YYYY")}
+        </Box>
       </Grid>
-      {description ? <Box>{description}</Box> : null}
     </Grid>
   );
 };

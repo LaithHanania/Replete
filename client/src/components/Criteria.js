@@ -11,12 +11,16 @@ const Criteria = () => {
   const [isFetchingCriteria, setIsFetchingCriteria] = useState(true);
   const [criteria, setCriteria] = useState([]);
   const [open, setOpen] = useState(false);
+  const [editingInitialValues, setEditingInitialValues] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    setEditingInitialValues(null);
+    setSelectedId(null);
     setOpen(false);
   };
 
@@ -36,6 +40,12 @@ const Criteria = () => {
     setIsFetchingCriteria(true);
     await deleteCriteria(label);
     await fetchCriteria();
+  };
+
+  const handleEdit = (initialValues, id) => {
+    setEditingInitialValues(initialValues);
+    setSelectedId(id);
+    setOpen(true);
   };
 
   useEffect(() => {
@@ -60,13 +70,16 @@ const Criteria = () => {
             height="270px"
             style={{ overflowY: "scroll", overflowX: "hidden" }}
           >
-            {criteria.map(({ label, weight }) => {
+            {criteria.map(({ label, weight, _id, description }) => {
               return (
                 <SingleCriteriaCard
                   key={label}
                   label={label}
                   weight={weight}
+                  id={_id}
                   onDelete={handleDelete}
+                  onEdit={handleEdit}
+                  description={description}
                 />
               );
             })}
@@ -77,6 +90,8 @@ const Criteria = () => {
             open={open}
             onClose={handleClose}
             onSubmit={handleSubmit}
+            editingInitialValues={editingInitialValues}
+            selectedId={selectedId}
           />
         </div>
       )}
@@ -84,4 +99,4 @@ const Criteria = () => {
   );
 };
 
-export default Criteria;
+export default React.memo(Criteria);

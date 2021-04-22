@@ -17,6 +17,11 @@ export const deleteCriteria = async (label) => {
   return resp;
 };
 
+export const updateCriteria = async (values, id) => {
+  const resp = await axios.put("/api/criteria", { data: { values, id } });
+  return resp;
+};
+
 export const getEvents = async ({ page, limit }) => {
   const resp = await axios.get(`/api/events?page=${page}&limit=${limit}`);
   return resp.data;

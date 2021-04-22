@@ -68,7 +68,12 @@ const Events = () => {
       ) : (
         <>
           <EventsChart events={events} />
-          <Box display="flex" justifyContent="center" flexDirection="column" width="100%">
+          <Box
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            width="100%"
+          >
             <Box paddingBottom={1} justifyContent="center">
               {events.map(({ date, label, description, _id }) => (
                 <SingleEventCard
@@ -80,7 +85,9 @@ const Events = () => {
                 />
               ))}
             </Box>
-            <PrimaryButton text="Create Event" onClick={handleOpen} />
+            <Box display="flex" justifyContent="center">
+              <PrimaryButton text="Create Event" onClick={handleOpen} />
+            </Box>
           </Box>
           <CreateEventModal
             open={open}
@@ -88,7 +95,7 @@ const Events = () => {
             onSubmit={handleSubmit}
             initialValues={createFromCustomObject}
           />
-          <Box display="flex" justifyContent="center">
+          <Box display="flex" justifyContent="center" paddingTop="16px">
             <Pagination
               count={pageCount}
               showFirstButton

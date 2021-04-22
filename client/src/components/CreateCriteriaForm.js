@@ -1,13 +1,23 @@
-import React from 'react';
+import React from "react";
 import { Form, Field } from "react-final-form";
 import { TextField } from "final-form-material-ui";
 import { Button, Grid } from "@material-ui/core";
-import { postCriteria } from "repository/index";
+import { postCriteria, updateCriteria } from "repository/index";
 import Proptypes from "prop-types";
 
-const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {
+const CreateCriteriaForm = ({
+  criteria,
+  onCancel,
+  onSubmit,
+  editingInitialValues,
+  selectedId,
+}) => {
   const onFormSubmit = async (values) => {
-    await postCriteria(values);
+    if (selectedId) {
+      await updateCriteria(values, selectedId);
+    } else {
+      await postCriteria(values);
+    }
     onSubmit();
   };
 
@@ -25,7 +35,10 @@ const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {
       errors.weight = "Value must be a number between 0 and 10";
     }
 
-    if (criteria.some((criterion) => criterion.label === values.label)) {
+    if (
+      !(editingInitialValues?.label === values.label) &&
+      criteria.some((criterion) => criterion.label === values.label)
+    ) {
       errors.label = "Name must be unique";
     }
 
@@ -35,6 +48,7 @@ const CreateCriteriaForm = ({ criteria, onCancel, onSubmit }) => {
   return (
     <div>
       <Form
+        initialValues={editingInitialValues ?? null}
         onSubmit={onFormSubmit}
         validate={validate}
         render={({ handleSubmit, submitting, pristine, form }) => (
@@ -103,6 +117,12 @@ CreateCriteriaForm.propTypes = {
   criteria: Proptypes.array,
   onCancel: Proptypes.func.isRequired,
   onSubmit: Proptypes.func.isRequired,
+  editingInitialValues: Proptypes.shape({
+    label: Proptypes.string,
+    weight: Proptypes.number,
+    description: Proptypes.string,
+  }),
+  selectedId: Proptypes.string,
 };
 
 export default CreateCriteriaForm;

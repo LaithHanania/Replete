@@ -1,9 +1,16 @@
-import React from 'react';
+import React from "react";
 import Modal from "commonComponents/Modal";
 import CreateCriteriaForm from "./CreateCriteriaForm";
 import Proptypes from "prop-types";
 
-const CreateCriteriaModal = ({ criteria, open, onClose, onSubmit }) => {
+const CreateCriteriaModal = ({
+  criteria,
+  open,
+  onClose,
+  onSubmit,
+  editingInitialValues,
+  selectedId,
+}) => {
   return (
     <Modal
       open={open}
@@ -15,6 +22,8 @@ const CreateCriteriaModal = ({ criteria, open, onClose, onSubmit }) => {
         criteria={criteria}
         onCancel={onClose}
         onSubmit={onSubmit}
+        editingInitialValues={editingInitialValues}
+        selectedId={selectedId}
       />
     </Modal>
   );
@@ -25,6 +34,12 @@ CreateCriteriaModal.propTypes = {
   open: Proptypes.bool.isRequired,
   onClose: Proptypes.func.isRequired,
   onSubmit: Proptypes.func.isRequired,
+  editingInitialValues: Proptypes.shape({
+    label: Proptypes.string,
+    weight: Proptypes.number,
+    description: Proptypes.string,
+  }),
+  selectedId: Proptypes.string,
 };
 
 export default CreateCriteriaModal;

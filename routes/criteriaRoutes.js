@@ -53,4 +53,21 @@ module.exports = (app) => {
       res.status(422).send(err);
     }
   });
+
+  app.put("/api/criteria", requireLogin, async (req, res) => {
+    const { label, weight, description } = req.body.data.values;
+    const { id } = req.body.data;
+
+    const criteria = await Criteria.find({
+      _user: req.user.id,
+      _id: id,
+    }).updateOne({ label, weight, description });
+
+    try {
+      const user = await req.user.save();
+      res.send(user);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
 };
