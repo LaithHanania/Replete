@@ -70,21 +70,50 @@ const Criteria = () => {
             height="270px"
             style={{ overflowY: "scroll", overflowX: "hidden" }}
           >
-            {criteria.map(({ label, weight, _id, description }) => {
-              return (
-                <SingleCriteriaCard
-                  key={label}
-                  label={label}
-                  weight={weight}
-                  id={_id}
-                  onDelete={handleDelete}
-                  onEdit={handleEdit}
-                  description={description}
-                />
-              );
-            })}
+            {criteria.length ? (
+              criteria.map(({ label, weight, _id, description }) => {
+                return (
+                  <SingleCriteriaCard
+                    key={label}
+                    label={label}
+                    weight={weight}
+                    id={_id}
+                    onDelete={handleDelete}
+                    onEdit={handleEdit}
+                    description={description}
+                  />
+                );
+              })
+            ) : (
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                height="100%"
+                p={1}
+                m={1}
+              >
+                <Box
+                  color="gray"
+                  fontStyle="italic"
+                  paddingBottom="8px"
+                  p={1}
+                  textAlign="center"
+                >
+                  Create your criteria here! Criteria are what you want to
+                  evaluate your events according to and represent what matters
+                  to you in your life.
+                </Box>
+                <Box p={1}>
+                  <PrimaryButton onClick={handleOpen} text="Create Criteria" />
+                </Box>
+              </Box>
+            )}
           </Box>
-          <PrimaryButton onClick={handleOpen} text="Create" />
+          {criteria.length ? (
+            <PrimaryButton onClick={handleOpen} text="Create" />
+          ) : null}
           <CreateCriteriaModal
             criteria={criteria}
             open={open}

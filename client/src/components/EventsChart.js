@@ -25,6 +25,14 @@ const EventsChart = ({ events }) => {
     net,
   }));
 
+  const exampleData = [
+    {net: 10,  date: moment("2021-01-01").format("MMM Do")},
+    {net: 5,  date: moment("2021-01-02").format("MMM Do")},
+    {net: 10,  date: moment("2021-01-03").format("MMM Do")},
+    {net: 5,  date: moment("2021-01-04").format("MMM Do")},
+    {net: 10,  date: moment("2021-01-05").format("MMM Do")},
+  ];
+
   /*const min = data.reduce(
     (min, p) => (p.date < min ? p.date : min),
     data[0].date
@@ -47,7 +55,7 @@ const EventsChart = ({ events }) => {
       <ComposedChart
         width={500}
         height={400}
-        data={niceData}
+        data={data.length ? niceData : exampleData}
         margin={{
           top: 20,
           right: 20,

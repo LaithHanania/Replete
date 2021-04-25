@@ -48,10 +48,34 @@ const CustomEvents = () => {
       borderRadius={16}
     >
       <Title text="Your Custom Events" />
-      <CustomEventsTable
-        customEvents={customEvents}
-      />
-      <PrimaryButton text="Create" onClick={handleOpen} />
+      {customEvents?.length ? (
+        <>
+          <CustomEventsTable customEvents={customEvents} />
+          <PrimaryButton text="Create" onClick={handleOpen} />
+        </>
+      ) : (
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          height="292px"
+        >
+          <Box
+            color="gray"
+            fontStyle="italic"
+            paddingBottom="8px"
+            textAlign="center"
+          >
+            Create your custom events here! Custom events are events that are
+            repeated often and you would like to use as a basis to add new
+            events.
+          </Box>
+          <Box>
+            <PrimaryButton onClick={handleOpen} text="Create Custom Events" />
+          </Box>
+        </Box>
+      )}
       <CreateCustomEventModal
         open={isCreateFormOpen}
         onClose={handleClose}

@@ -74,7 +74,7 @@ const Events = () => {
             flexDirection="column"
             width="100%"
           >
-            <Box paddingBottom={1} justifyContent="center">
+            <Box paddingBottom={2} justifyContent="center">
               {events.map(({ date, label, description, _id }) => (
                 <SingleEventCard
                   date={date}
@@ -85,6 +85,24 @@ const Events = () => {
                 />
               ))}
             </Box>
+            {!events.length ? (
+              <>
+                <Box color="gray" fontStyle="italic" paddingBottom="16px">
+                  *Until you create events, the graph shown is just an example
+                  graph, no real data has been recorded yet.
+                </Box>
+                <Box
+                  color="gray"
+                  fontStyle="italic"
+                  paddingBottom="16px"
+                  textAlign="center"
+                >
+                  Create your events here! An event could be anything that
+                  happened throughout the day that you would like to measure the
+                  effect of.
+                </Box>
+              </>
+            ) : null}
             <Box display="flex" justifyContent="center">
               <PrimaryButton text="Create Event" onClick={handleOpen} />
             </Box>
