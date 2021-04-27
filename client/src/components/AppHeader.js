@@ -5,7 +5,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AppHeaderMenu from "./AppHeaderMenu";
-import { useUser } from "../contexts/User/UserState";
+import {useRecoilValue} from 'recoil';
+import {userState} from '../recoil/atoms';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,8 +27,7 @@ const StyledToolbar = withStyles({
 })(Toolbar);
 
 const AppHeader = () => {
-  const [userState] = useUser();
-  const { user } = userState;
+  const user = useRecoilValue(userState);
   const classes = useStyles();
 
   return (

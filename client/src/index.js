@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { UserState } from "./contexts/User/UserState";
+import { RecoilRoot } from "recoil";
 
-import axios from 'axios';
+import axios from "axios";
 window.axios = axios;
 
 ReactDOM.render(
-  <UserState>
-    <App />
-  </UserState>,
+  <RecoilRoot>
+      <App />
+  </RecoilRoot>,
   document.querySelector("#root")
 );

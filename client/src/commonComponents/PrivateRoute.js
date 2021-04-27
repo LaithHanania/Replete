@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { useUser } from "../contexts/User/UserState";
-import Proptypes from 'prop-types';
+import { useRecoilValue } from "recoil";
+import { userState } from "../recoil/atoms";
+import Proptypes from "prop-types";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [userState] = useUser();
-  const { user } = userState;
+  const user = useRecoilValue(userState);
   const isLoggedIn = !!user;
-
+  
   return (
     <Route
       {...rest}
@@ -19,7 +19,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 PrivateRoute.propTypes = {
-    component: Proptypes.elementType
+  component: Proptypes.elementType,
 };
 
 export default PrivateRoute;

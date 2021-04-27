@@ -47,3 +47,8 @@ export const postCustomEvent = async (values) => {
 
   return resp;
 };
+
+export const getUser = async () => {
+  const res = await axios.get("/api/current_user");
+  return res.data;
+};
