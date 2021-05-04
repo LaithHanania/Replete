@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import AppHeaderMenu from "./AppHeaderMenu";
 import {useRecoilValue} from 'recoil';
 import {userState} from '../recoil/atoms';
+import {PRIMARY, PRIMARY_TEXT} from 'helpers/constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StyledToolbar = withStyles({
   root: {
-    backgroundColor: "#3C3939",
+    backgroundColor: PRIMARY,
   },
 })(Toolbar);
 
@@ -35,7 +36,7 @@ const AppHeader = () => {
       <AppBar position="static">
         <StyledToolbar>
           <AppHeaderMenu />
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} color={PRIMARY_TEXT}>
             Replete
           </Typography>
           <Button color="inherit" href="/dashboard">

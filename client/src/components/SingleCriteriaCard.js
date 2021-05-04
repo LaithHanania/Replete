@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import { PRIMARY, LIGHT_GREY } from "helpers/constants";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: "#3C3939",
+    backgroundColor: PRIMARY,
   },
 }))(LinearProgress);
 
@@ -31,35 +32,37 @@ const SingleCriteriaCard = ({
   description,
 }) => {
   return (
-    <Grid container alignItems="center" spacing={1}>
-      <Grid item xs={3}>
-        {label}:
+    <Box borderRadius={16} paddingLeft="8px" marginTop="8px" bgcolor={LIGHT_GREY}>
+      <Grid container alignItems="center" spacing={1}>
+        <Grid item xs={3}>
+          {label}:
+        </Grid>
+        <Grid item xs={6}>
+          <BorderLinearProgress variant="determinate" value={weight * 10} />
+        </Grid>
+        <Grid item xs={1}>
+          {weight}
+        </Grid>
+        <Grid item xs={2}>
+          <Box display="flex" flexDirection="row">
+            <IconButton
+              onClick={() => {
+                onEdit({ label, weight, description }, id);
+              }}
+            >
+              <EditIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                onDelete(label);
+              }}
+            >
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+          </Box>
+        </Grid>
       </Grid>
-      <Grid item xs={6}>
-        <BorderLinearProgress variant="determinate" value={weight * 10} />
-      </Grid>
-      <Grid item xs={1}>
-        {weight}
-      </Grid>
-      <Grid item xs={2}>
-        <Box display="flex" flexDirection="row">
-          <IconButton
-            onClick={() => {
-              onEdit({ label, weight, description }, id);
-            }}
-          >
-            <EditIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            onClick={() => {
-              onDelete(label);
-            }}
-          >
-            <DeleteIcon fontSize="small" />
-          </IconButton>
-        </Box>
-      </Grid>
-    </Grid>
+    </Box>
   );
 };
 

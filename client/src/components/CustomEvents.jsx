@@ -6,6 +6,7 @@ import Title from "commonComponents/Title";
 import PrimaryButton from "commonComponents/PrimaryButton";
 import CustomEventsTable from "./CustomEventsTable";
 import CreateCustomEventModal from "./CreateCustomEventModal";
+import { PRIMARY } from "helpers/constants";
 
 const CustomEvents = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,9 +44,10 @@ const CustomEvents = () => {
     <Box
       paddingX="16px"
       paddingTop="16px"
-      border={2}
+      border={6}
       height="100%"
       borderRadius={16}
+      borderColor={PRIMARY}
     >
       <Title text="Your Custom Events" />
       {customEvents?.length ? (

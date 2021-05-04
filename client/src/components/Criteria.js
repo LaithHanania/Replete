@@ -6,6 +6,7 @@ import CreateCriteriaModal from "./CreateCriteriaModal";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import SingleCriteriaCard from "./SingleCriteriaCard";
 import Box from "@material-ui/core/Box";
+import {PRIMARY} from 'helpers/constants';
 
 const Criteria = () => {
   const [isFetchingCriteria, setIsFetchingCriteria] = useState(true);
@@ -56,9 +57,10 @@ const Criteria = () => {
     <Box
       paddingX="16px"
       paddingTop="16px"
-      border={2}
+      border={6}
       borderRadius={16}
       height="100%"
+      borderColor={PRIMARY}
     >
       <Title text="Your Criteria" />
       {isFetchingCriteria && !criteria ? (

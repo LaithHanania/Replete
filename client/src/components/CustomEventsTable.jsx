@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 import IconButton from "@material-ui/core/IconButton";
 import AddBox from "@material-ui/icons/AddBox";
 import PropTypes from "prop-types";
+import { findValueColor } from "helpers/utils";
 
 const HeaderCell = withStyles({
   root: {
@@ -44,7 +45,11 @@ const CustomEventsTable = ({ customEvents }) => {
                   <Box fontStyle="italic">No description</Box>
                 )}
               </TableCell>
-              <TableCell align="center">{event.netValue}</TableCell>
+              <TableCell align="center">
+                <Box color={findValueColor(event.netValue)}>
+                  {event.netValue}
+                </Box>
+              </TableCell>
               <TableCell>
                 <IconButton
                   onClick={() => {
