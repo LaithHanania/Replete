@@ -8,7 +8,7 @@ import CreateEventModal from "./CreateEventModal";
 import EventsChart from "./EventsChart";
 import Pagination from "@material-ui/lab/Pagination";
 import Box from "@material-ui/core/Box";
-import {PRIMARY} from 'helpers/constants';
+import { PRIMARY } from "helpers/constants";
 
 //TODO: Make this component into multiple components
 //TODO: allow the user set the limit of events per page
@@ -62,7 +62,13 @@ const Events = () => {
   };
 
   return (
-    <Box padding="16px" marginTop="48px" border={6} borderRadius={16} borderColor={PRIMARY}>
+    <Box
+      padding="16px"
+      marginTop="48px"
+      border={6}
+      borderRadius={4}
+      borderColor={PRIMARY}
+    >
       <Title text="Your Events" />
       {isFetchingEvents ? (
         <CircularProgress />

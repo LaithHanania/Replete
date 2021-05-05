@@ -46,7 +46,7 @@ const CustomEvents = () => {
       paddingTop="16px"
       border={6}
       height="100%"
-      borderRadius={16}
+      borderRadius={4}
       borderColor={PRIMARY}
     >
       <Title text="Your Custom Events" />

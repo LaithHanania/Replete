@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { PRIMARY, LIGHT_GREY } from "helpers/constants";
+import { PRIMARY, PRIMARY_LIGHT } from "helpers/constants";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -32,7 +32,7 @@ const SingleCriteriaCard = ({
   description,
 }) => {
   return (
-    <Box borderRadius={16} paddingLeft="8px" marginTop="8px" bgcolor={LIGHT_GREY}>
+    <Box borderRadius={16} paddingLeft="8px" marginTop="8px" bgcolor={PRIMARY_LIGHT}>
       <Grid container alignItems="center" spacing={1}>
         <Grid item xs={3}>
           {label}:

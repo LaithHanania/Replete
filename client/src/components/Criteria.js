@@ -6,7 +6,7 @@ import CreateCriteriaModal from "./CreateCriteriaModal";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import SingleCriteriaCard from "./SingleCriteriaCard";
 import Box from "@material-ui/core/Box";
-import {PRIMARY} from 'helpers/constants';
+import { LIGHT_GREY, PRIMARY } from "helpers/constants";
 
 const Criteria = () => {
   const [isFetchingCriteria, setIsFetchingCriteria] = useState(true);
@@ -55,22 +55,24 @@ const Criteria = () => {
 
   return (
     <Box
-      paddingX="16px"
       paddingTop="16px"
       border={6}
-      borderRadius={16}
+      borderRadius={4}
       height="100%"
       borderColor={PRIMARY}
     >
-      <Title text="Your Criteria" />
+      <Box paddingLeft="16px">
+        <Title text="Your Criteria" />
+      </Box>
       {isFetchingCriteria && !criteria ? (
         <CircularProgress />
       ) : (
-        <div>
+        <>
           <Box
             paddingBottom="12px"
             height="270px"
             style={{ overflowY: "scroll", overflowX: "hidden" }}
+            paddingX="16px"
           >
             {criteria.length ? (
               criteria.map(({ label, weight, _id, description }) => {
@@ -113,9 +115,19 @@ const Criteria = () => {
               </Box>
             )}
           </Box>
-          {criteria.length ? (
-            <PrimaryButton onClick={handleOpen} text="Create" />
-          ) : null}
+          <Box
+            borderTop={1}
+            paddingLeft="16px"
+            bgcolor={LIGHT_GREY}
+            marginBottom="-32px"
+            borderColor={LIGHT_GREY}
+          >
+            {criteria.length ? (
+              <Box marginTop="8px" paddingBottom="8px">
+                <PrimaryButton onClick={handleOpen} text="Create" />
+              </Box>
+            ) : null}
+          </Box>
           <CreateCriteriaModal
             criteria={criteria}
             open={open}
@@ -124,7 +136,7 @@ const Criteria = () => {
             editingInitialValues={editingInitialValues}
             selectedId={selectedId}
           />
-        </div>
+        </>
       )}
     </Box>
   );
