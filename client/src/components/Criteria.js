@@ -54,13 +54,7 @@ const Criteria = () => {
   }, [fetchCriteria]);
 
   return (
-    <Box
-      paddingTop="16px"
-      border={6}
-      borderRadius={4}
-      height="100%"
-      borderColor={PRIMARY}
-    >
+    <Box paddingTop="16px" border={6} borderRadius={4} borderColor={PRIMARY}>
       <Box paddingLeft="16px">
         <Title text="Your Criteria" />
       </Box>
@@ -119,7 +113,6 @@ const Criteria = () => {
             borderTop={1}
             paddingLeft="16px"
             bgcolor={LIGHT_GREY}
-            marginBottom="-32px"
             borderColor={LIGHT_GREY}
           >
             {criteria.length ? (

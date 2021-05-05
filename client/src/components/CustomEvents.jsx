@@ -6,7 +6,7 @@ import Title from "commonComponents/Title";
 import PrimaryButton from "commonComponents/PrimaryButton";
 import CustomEventsTable from "./CustomEventsTable";
 import CreateCustomEventModal from "./CreateCustomEventModal";
-import { PRIMARY } from "helpers/constants";
+import { PRIMARY, LIGHT_GREY } from "helpers/constants";
 
 const CustomEvents = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,19 +41,23 @@ const CustomEvents = () => {
   return isLoading ? (
     <CircularProgress />
   ) : (
-    <Box
-      paddingX="16px"
-      paddingTop="16px"
-      border={6}
-      height="100%"
-      borderRadius={4}
-      borderColor={PRIMARY}
-    >
-      <Title text="Your Custom Events" />
+    <Box paddingTop="16px" border={6} borderRadius={4} borderColor={PRIMARY}>
+      <Box paddingX="16px">
+        <Title text="Your Custom Events" />
+      </Box>
       {customEvents?.length ? (
         <>
-          <CustomEventsTable customEvents={customEvents} />
-          <PrimaryButton text="Create" onClick={handleOpen} />
+          <Box paddingX="16px" paddingBottom="12px">
+            <CustomEventsTable customEvents={customEvents} />
+          </Box>
+          <Box
+            paddingX="16px"
+            paddingTop="12px"
+            paddingY="8px"
+            bgcolor={LIGHT_GREY}
+          >
+            <PrimaryButton text="Create" onClick={handleOpen} />
+          </Box>
         </>
       ) : (
         <Box
