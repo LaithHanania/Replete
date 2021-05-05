@@ -65,12 +65,13 @@ const CustomEvents = () => {
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
-          height="292px"
+          height="356px"
+          paddingX="16px"
         >
           <Box
             color="gray"
             fontStyle="italic"
-            paddingBottom="8px"
+            paddingBottom="16px"
             textAlign="center"
           >
             Create your custom events here! Custom events are events that are

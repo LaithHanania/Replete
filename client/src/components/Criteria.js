@@ -64,7 +64,7 @@ const Criteria = () => {
         <>
           <Box
             paddingBottom="12px"
-            height="291px"
+            height={criteria.length ? "291px" : "343px"}
             style={{ overflowY: "scroll", overflowX: "hidden" }}
             paddingX="16px"
           >
@@ -98,12 +98,13 @@ const Criteria = () => {
                   paddingBottom="8px"
                   p={1}
                   textAlign="center"
+                  marginTop="-12px"
                 >
                   Create your criteria here! Criteria are what you want to
                   evaluate your events according to and represent what matters
                   to you in your life.
                 </Box>
-                <Box p={1}>
+                <Box padding={1}>
                   <PrimaryButton onClick={handleOpen} text="Create Criteria" />
                 </Box>
               </Box>
