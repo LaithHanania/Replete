@@ -64,7 +64,7 @@ const Criteria = () => {
         <>
           <Box
             paddingBottom="12px"
-            height="270px"
+            height="291px"
             style={{ overflowY: "scroll", overflowX: "hidden" }}
             paddingX="16px"
           >

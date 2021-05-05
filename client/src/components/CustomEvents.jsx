@@ -47,7 +47,7 @@ const CustomEvents = () => {
       </Box>
       {customEvents?.length ? (
         <>
-          <Box paddingX="16px" paddingBottom="12px">
+          <Box paddingX="16px" paddingBottom="12px" height="292px">
             <CustomEventsTable customEvents={customEvents} />
           </Box>
           <Box
