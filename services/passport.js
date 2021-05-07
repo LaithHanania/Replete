@@ -1,20 +1,24 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
+const { google } = require("googleapis");
 const keys = require("../config/keys");
 
 const User = mongoose.model("users");
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  const session = { id: user.id, accessToken: user.accessToken };
+  done(null, session);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id).then((user) => {
+passport.deserializeUser((sessionUser, done) => {
+  /*User.findById(session.id).then((user) => {
     done(null, user);
-  });
+  });*/
+  done(null, sessionUser);
 });
 
 passport.use(
+  "google",
   new GoogleStrategy(
     {
       clientID: keys.googleClientID,
@@ -24,8 +28,18 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       const existingUser = await User.findOne({ googleId: profile.id });
+
       if (existingUser) {
-        return done(null, existingUser);
+        const session = {
+          id: existingUser._id,
+          givenName: existingUser.givenName,
+          familyName: existingUser.familyName,
+          googleId: existingUser.googleId,
+          emails: existingUser.emails,
+          accessToken: accessToken,
+        };
+
+        return done(null, session);
       }
 
       const user = await new User({
@@ -34,7 +48,17 @@ passport.use(
         familyName: profile.name.familyName,
         emails: profile.emails,
       }).save();
-      done(null, user);
+
+      const session = {
+        id: user._id,
+        givenName: user.givenName,
+        familyName: user.familyName,
+        googleId: user.googleId,
+        emails: user.emails,
+        accessToken: accessToken,
+      };
+
+      done(null, session);
     }
   )
 );

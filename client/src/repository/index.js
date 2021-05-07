@@ -52,3 +52,8 @@ export const getUser = async () => {
   const res = await axios.get("/api/current_user");
   return res.data;
 };
+
+export const getCalendar = async () => {
+  const res = await axios.get("/api/google_calendar");
+  return res;
+};

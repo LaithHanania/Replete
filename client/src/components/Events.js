@@ -64,7 +64,7 @@ const Events = () => {
   return (
     <Box
       padding="16px"
-      marginTop="48px"
+      marginTop="24px"
       border={6}
       borderRadius={4}
       borderColor={PRIMARY}

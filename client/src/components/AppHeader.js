@@ -5,9 +5,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AppHeaderMenu from "./AppHeaderMenu";
-import {useRecoilValue} from 'recoil';
-import {userState} from '../recoil/atoms';
-import {PRIMARY, PRIMARY_TEXT} from 'helpers/constants';
+import { useRecoilValue } from "recoil";
+import { userState } from "../recoil/atoms";
+import { PRIMARY, PRIMARY_TEXT } from "helpers/constants";
+import { getCalendar } from "repository/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,11 +37,24 @@ const AppHeader = () => {
       <AppBar position="static">
         <StyledToolbar>
           <AppHeaderMenu />
-          <Typography variant="h6" className={classes.title} color={PRIMARY_TEXT}>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            color={PRIMARY_TEXT}
+          >
             Replete
           </Typography>
           <Button color="inherit" href="/dashboard">
             Dashboard
+          </Button>
+          <Button
+            color="inherit"
+            onClick={async () => {
+              const result = await getCalendar();
+              console.log(result);
+            }}
+          >
+            Calendar
           </Button>
           <Button color="inherit" href={!user ? "/auth/google" : "/api/logout"}>
             {!user ? "Login" : "Logout"}

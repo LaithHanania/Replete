@@ -28,6 +28,7 @@ require("./routes/authRoutes")(app);
 require("./routes/criteriaRoutes")(app);
 require("./routes/eventRoutes")(app);
 require("./routes/customEventRoutes")(app);
+require("./routes/googleCalendarRoutes")(app);
 
 //For production routing (heroku):
 if (process.env.NODE_ENV === "production") {
