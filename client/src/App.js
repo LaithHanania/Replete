@@ -6,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import AboutUs from "components/AboutUs";
 import Dashboard from "components/Dashboard";
 import Event from "components/Event";
+import Calendar from "components/Calendar";
 import PrivateRoute from "commonComponents/PrivateRoute";
 import LoggedOutWarning from "commonComponents/LoggedOutWarning";
 import { useSetRecoilState } from "recoil";
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/signin" component={LoggedOutWarning} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/event/:id" exact component={Event} />
+        <PrivateRoute path="/calendar" component={Calendar} />
       </Container>
     </Router>
   );

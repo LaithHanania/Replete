@@ -8,7 +8,6 @@ import AppHeaderMenu from "./AppHeaderMenu";
 import { useRecoilValue } from "recoil";
 import { userState } from "../recoil/atoms";
 import { PRIMARY, PRIMARY_TEXT } from "helpers/constants";
-import { getCalendar } from "repository/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,10 +48,7 @@ const AppHeader = () => {
           </Button>
           <Button
             color="inherit"
-            onClick={async () => {
-              const result = await getCalendar();
-              console.log(result);
-            }}
+            href="/calendar"
           >
             Calendar
           </Button>
