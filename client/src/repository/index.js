@@ -53,7 +53,7 @@ export const getUser = async () => {
   return res.data;
 };
 
-export const getCalendar = async () => {
-  const res = await axios.get("/api/google_calendar");
+export const getMonthEvents = async (date) => {
+  const res = await axios.get(`/api/google_calendar_month?date=${date}`);
   return res;
 };

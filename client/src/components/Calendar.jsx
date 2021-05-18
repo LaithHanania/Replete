@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { getCalendar } from "repository/index";
+import { getMonthEvents } from "repository/index";
 import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 // eslint-disable-next-line no-unused-vars
 import style from "react-big-calendar/lib/css/react-big-calendar.css";
@@ -11,6 +11,10 @@ const localizer = momentLocalizer(moment);
 const Calendar = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [calendarDetails, setCalendarDetails] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentView, setCurrentView] = useState("month");
+  console.log(currentDate);
+
   const transformedEvents = calendarDetails?.map((event) => {
     const start = event.start.date
       ? new Date(`${event.start.date}T08:00:00`)
@@ -30,16 +34,17 @@ const Calendar = () => {
     };
   });
 
-  const fetchGoogleCalendar = useCallback(async () => {
-    const response = await getCalendar();
+  const fetchNewEvents = useCallback(async () => {
+    setIsLoading(true);
+    setCalendarDetails(null);
+    const response = await getMonthEvents(currentDate);
     setCalendarDetails(response?.data?.data?.items);
-    console.log(response);
     setIsLoading(false);
-  }, []);
+  }, [currentDate]);
 
   useEffect(() => {
-    fetchGoogleCalendar();
-  }, [fetchGoogleCalendar]);
+    fetchNewEvents();
+  }, [currentDate]);
 
   return isLoading || !calendarDetails ? (
     <div>wait...</div>
@@ -47,9 +52,16 @@ const Calendar = () => {
     <Box>
       <BigCalendar
         localizer={localizer}
-        defaultView="month"
         events={transformedEvents}
         style={{ height: "90vh" }}
+        onNavigate={(date) => {
+          setCurrentDate(new Date(date));
+        }}
+        onView={(view) => {
+          setCurrentView(view);
+        }}
+        view={currentView}
+        date={currentDate}
       />
     </Box>
   );
