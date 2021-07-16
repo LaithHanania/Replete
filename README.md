@@ -24,6 +24,7 @@ Libraries used:
 - React-Datepicker for calendar functionality
 - Axios for requests
 - Recharts for data visualization
+- Recoil for global state management
 
 # Backend
 The backend is a Node-Express server.  
